@@ -26,11 +26,11 @@ This class is also in the [MicroToolsKit]("https://www.nuget.org/packages/WEBGE.
 * **ST7735**
   * **ST7735** : .NetMF class
 
-<img src="img/ST7735.png" align="center" />
+<img src="img/ST7735.png" />
 
   * **Color** : .NetMF class
 
-<img src="img/Color.png" align="center" />
+<img src="img/Color.png" />
 
   * **Netduino** : class test program for Netduino board
   * **FezPanda** : class test program for Fez Panda board 
@@ -56,15 +56,15 @@ Fez Panda III, Netduino2 plus
 
 **To get started**
 ----
-- [ST7735 GitHub Pages]("http://webge.github.io/ST7735/") (in French).
+- [ST7735 GitHub Pages](http://webge.github.io/ST7735/) (in French).
 
 **Feed on Google+**
 ----
-* [C# embarqué et .NetMF : Netduino,GHI FEZ,Quail]("https://plus.google.com/collection/oaaJX") (in French).
+* [C# embarqué et .NetMF : Netduino,GHI FEZ,Quail](https://plus.google.com/collection/oaaJX) (in French).
 
 **Wiki**
 ----
-* [C# embarqué et .NetMF v4.3 pour les cartes Netduino et GHI FEZ]("http://webge.dyndns-server.com/dokuwiki/doku.php?id=netmf43:accueilnetmf")</a> (in French).
+* [C# embarqué et .NetMF v4.3 pour les cartes Netduino et GHI FEZ](http://webge.dyndns-server.com/dokuwiki/doku.php?id=netmf43:accueilnetmf) (in French).
 
 **Project site**
 ----
