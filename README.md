@@ -8,7 +8,7 @@ A **.NETMF v4.3 class** write for a ST7735 circuit : **262K Color Single-Chip TF
 
 This class is also in the [MicroToolsKit]("https://www.nuget.org/packages/WEBGE.Microtoolskit/")  **library**. Download at [nuget.com]("https://www.nuget.org").
 
- <img src="img/nuget.JPG" align="center" />
+ ![](img/nuget.JPG)
 
 **Hardware**
 ----
@@ -26,11 +26,11 @@ This class is also in the [MicroToolsKit]("https://www.nuget.org/packages/WEBGE.
 * **ST7735**
   * **ST7735** : .NetMF class
 
-<img src="img/ST7735.png" />
+![](img/ST7735.png)
 
   * **Color** : .NetMF class
 
-<img src="img/Color.png" />
+![](img/Color.png)
 
   * **Netduino** : class test program for Netduino board
   * **FezPanda** : class test program for Fez Panda board 
