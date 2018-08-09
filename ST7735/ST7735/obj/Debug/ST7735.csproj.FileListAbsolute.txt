@@ -1,0 +1,16 @@
+C:\Users\phili\OneDrive\Documents\Visual Studio 2015\Projects\ST7735\ST7735\bin\Debug\le\ST7735.dll
+C:\Users\phili\OneDrive\Documents\Visual Studio 2015\Projects\ST7735\ST7735\bin\Debug\be\ST7735.dll
+C:\Users\phili\OneDrive\Documents\Visual Studio 2015\Projects\ST7735\ST7735\bin\Debug\le\ST7735.pdb
+C:\Users\phili\OneDrive\Documents\Visual Studio 2015\Projects\ST7735\ST7735\bin\Debug\be\ST7735.pdb
+C:\Users\phili\OneDrive\Documents\Visual Studio 2015\Projects\ST7735\ST7735\bin\Debug\ST7735.dll
+C:\Users\phili\OneDrive\Documents\Visual Studio 2015\Projects\ST7735\ST7735\bin\Debug\ST7735.pdb
+C:\Users\phili\OneDrive\Documents\Visual Studio 2015\Projects\ST7735\ST7735\bin\Debug\le\ST7735.pe
+C:\Users\phili\OneDrive\Documents\Visual Studio 2015\Projects\ST7735\ST7735\bin\Debug\le\ST7735.pdbx
+C:\Users\phili\OneDrive\Documents\Visual Studio 2015\Projects\ST7735\ST7735\bin\Debug\be\ST7735.pe
+C:\Users\phili\OneDrive\Documents\Visual Studio 2015\Projects\ST7735\ST7735\bin\Debug\be\ST7735.pdbx
+C:\Users\phili\OneDrive\Documents\Visual Studio 2015\Projects\ST7735\ST7735\obj\Debug\be\ST7735.pe
+C:\Users\phili\OneDrive\Documents\Visual Studio 2015\Projects\ST7735\ST7735\obj\Debug\be\ST7735.pdbx
+C:\Users\phili\OneDrive\Documents\Visual Studio 2015\Projects\ST7735\ST7735\obj\Debug\le\ST7735.pe
+C:\Users\phili\OneDrive\Documents\Visual Studio 2015\Projects\ST7735\ST7735\obj\Debug\le\ST7735.pdbx
+C:\Users\phili\OneDrive\Documents\Visual Studio 2015\Projects\ST7735\ST7735\obj\Debug\ST7735.dll
+C:\Users\phili\OneDrive\Documents\Visual Studio 2015\Projects\ST7735\ST7735\obj\Debug\ST7735.pdb
