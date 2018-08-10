@@ -56,7 +56,7 @@ Fez Panda III, Netduino2 plus
 
 **To get started**
 ----
-- [ST7735 GitHub Pages](http://webge.github.io/ST7735/) (in French).
+See [ST7735 GitHub Pages](http://webge.github.io/ST7735/) (in French).
 
 **Feed on Google+**
 ----
