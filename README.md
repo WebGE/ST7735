@@ -37,7 +37,7 @@ This class is also in the [MicroToolsKit]("https://www.nuget.org/packages/WEBGE.
 
 **Assembly**
 ----
- ![](img/Adafruit_ST7735.jpg)
+ ![](img/Adafruit_ST7735.jpg) ![](img/ST7735.jpg)
 
 **Video**
 ----
