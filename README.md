@@ -53,6 +53,7 @@ Fez Panda III, Netduino2 plus
 
 **Todo list**
 ----
+any
 
 **To get started**
 ----
@@ -71,4 +72,4 @@ See [ST7735 GitHub Pages](http://webge.github.io/ST7735/) (in French).
 * [MicroToolsKit library](http://webge.dyndns-server.com/dokuwiki/doku.php?id=netmf43:6_microtoolskit) (in English).
 #
 
-**Maintened by** <a href="mailto:philippemariano@gmail.com">WebGe</a>
+**Maintened by** [WebGe](mailto:philippemariano@gmail.com)
