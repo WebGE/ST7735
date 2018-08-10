@@ -41,7 +41,7 @@ This class is also in the [MicroToolsKit]("https://www.nuget.org/packages/WEBGE.
 
 **Video**
 ----
-<a href="" target="_blank">To see on Youtube</a>
+to come up
 
 **Keywords**
 ----------------------------
