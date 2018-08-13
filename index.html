@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset='utf-8' />
+	<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+	<meta name="description" content="Contrôler d'afficheur graphique couleur : Programme de test en C# et description des classes ST7735 et Color"
+	/>
+	<link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+	<title>ST7735</title>
+</head>
+
+<body>
+	<!-- HEADER -->
+	<div id="header_wrap" class="outer">
+		<header class="inner">
+			<a id="forkme_banner" href="https://github.com/WebGE/EasyStepperDriver">View on GitHub</a>
+
+			<h1 id="project_title">ST7735 - 262K Color Single-Chip TFT Controller/Driver</h1>
+			<h2 id="project_tagline">Description des classes
+				<strong>
+					<em>ST7735</em>
+				</strong> et
+				<strong>
+					<em>Color</em>
+				</strong> développées en C# sous .NETMF v4.3 pour les cartes Netduino et FEZ (PANDA, COBRA...)
+			</h2>
+
+			<section id="downloads">
+				<a class="zip_download_link" href="https://github.com/WebGE/ST7735/zipball/master">Download this project as a .zip file</a>
+				<a class="tar_download_link" href="https://github.com/WebGE/ST7735/tarball/master">Download this project as a tar.gz file</a>
+			</section>
+		</header>
+	</div>
+
+	<!-- MAIN CONTENT -->
+	<div id="main_content_wrap" class="outer">
+		<section id="main_content" class="inner">
+			<hr>
+			<h4>Sommaire</h4>
+			<ol>
+				<li>LE MATERIEL
+					<ol>
+						<li>Les modules Adafruit 1,8'' Color TFT Shield et Breakout</li>
+						<li>
+							<a href="#DUINO">Les cartes Netduino</a>
+						</li>
+						<li>
+							<a href="#FEZ">Les cartes FEZ</a>
+						</li>
+					</ol>
+				</li>
+				<li>
+					<a href="#LOG">LE LOGICIEL</a>
+					<ol>
+						<li>
+							<a href="#REP">Contenu du répertoire proposé au téléchargement</a>
+						</li>
+						<li>
+							<a href="#NUGET">Le NuGet MicroToolsKit</a>
+						</li>
+						<li>
+							<a href="#WIKI">Le wiki .NetMF v4.3</a>
+						</li>
+						<li>
+							<a href="#DESC">Description et utilisation de la classe ST7735</a>
+						</li>
+					</ol>
+				</li>
+				<li>LIENS
+					<ol>
+						<li>
+							<a href="http://webge.dyndns-server.com/dokuwiki/doku.php?id=netmf43:accueilnetmf" target="_blank">Les exemples codés en C# pour les cartes Netduino et Fez (Panda 3, BrainPad)</a>
+						</li>
+						<li>
+							<a href="http://webge.dyndns-server.com/dokuwiki/doku.php?id=netmf43:6_microtoolskit" target="_blank">La page du projet MicroToolsKit</a>
+						</li>
+					</ol>
+				</li>
+
+			</ol>
+			<hr>
+			<h3>1. LE MATERIEL</h3>
+			<hr>
+			<h4>1.1 Les modules Adafruit 1,8'' Color TFT Shield et Breakout</h4>
+			<ul>
+				<li>
+					<strong>Présentation</strong>
+
+					<p>L'écran 1,8" de 128x160 pixels est un véritable TFT ! Le pilote ST7735R gère 18 bits et peut afficher 262 144 couleurs.
+						Ce pilote peut être utilisé avec une logique 3,3V ou 5V. Un lecteur de carte microSD complète le module. Il permet
+						de charger facilement des bitmaps couleur stockés sur une carte formatée en FAT16 / FAT32.
+					</p>
+					<table>
+						<tr>
+							<td>
+								<img src="images/AdafruitBreakout.jpg" />
+							</td>
+							<td>
+								<img src="images/AdafruitShield.jpg" />
+							</td>
+						</tr>
+						<tr>
+							<td align="center">
+								<strong>Adafruit 1,8'' Color TFT
+									<a href="https://www.adafruit.com/product/358" target="_blank">Breakout</a>
+								</strong>
+							</td>
+							<td align="center">
+								<strong>Adafruit 1,8'' Color TFT
+									<a href="https://www.adafruit.com/product/802" target="_blank">Shield</a>
+								</strong>
+							</td>
+						</tr>
+					</table>
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<strong>Ressources</strong>
+					<ul>
+						<li>
+							Documentation Adafruit (Code C++) :
+							<a href="https://learn.adafruit.com/1-8-tft-display" target="_blank">[lien]</a>
+						</li>
+						<li>
+							Wiki WebGE  (Code C++) : </strong>
+							<a href="http://webge.dyndns-server.com/dokuwiki/doku.php?id=arduino:arduinoecrangr1_8" target="_blank">[lien]</a>
+						</li>
+						<li>
+							Distributeur :
+							<a href="https://www.mouser.fr/Search/Refine.aspx?Keyword=485-358" target="_blank">Mouser</a>
+						</li>
+						<li>
+								Datasheet du circuit ST7735 :
+								<a href="datasheets/ST7735.zip" target="_blank">[Télécharger]</a>
+							</li>
+					</ul>
+				</li>
+			</ul>
+			<hr>
+			<h4 id="DUINO ">1.2 Les cartes Netduino</h4>
+			<h5>Wilderness Labs</h5>
+			<hr>
+			<ul>
+				<li>
+					<strong>Microcontrôleur</strong> : STM32F405RG 32 bits à architecture Cortex-M4 cadencé à 168 MHz.</li>
+				<li>
+					<strong>RAM</strong> : 100 KB (164+)*.</li>
+				<li>
+					<strong>Flash</strong> : 384 KB (1408KB)*.</li>
+				<li>
+					<strong>Port Ethernet : </strong> 10Mbps (Wifi:802.11b/g/n)*.</li>
+				<li>
+					<strong>E/S numériques</strong> : 22</li>
+				<li>
+					<strong>Entrées analogiques</strong> : 6</li>
+				<li>
+					<strong>Stockage</strong>: carte µSD</li>
+				<li>
+					<strong>IDE</strong> : Microsoft Visual Studio</li>
+				<li>
+					<strong>Framework</strong> : .NETMF 4.3</li>
+				<li>
+					<strong>Langages de programmation</strong> : C#, VB</li>
+			</ul>
+			<table>
+				<tr>
+					<td>
+						<img src="images/Netduino_Plus_2.jpg " alt="Netduino plus 2 " />
+					</td>
+					<td>
+						<img src="images/netduino3wifi.png " alt="Netduino 3 wifi " />
+					</td>
+				</tr>
+				<tr>
+					<td align="center">
+						<strong>Netduino + 2</strong>
+					</td>
+					<td align="center">
+						<strong>Netduino 3 wifi* (compatible Gadgeteer)</strong>
+					</td>
+				</tr>
+			</table>
+			<ul>
+				<li>
+					<strong>Sites à consulter</strong>:
+					<a href="https://www.wildernesslabs.co/ " target="_blank ">Netduino</a>
+				</li>
+				<li>
+					<strong>Distributeurs</strong> :
+					<a href="http://www.mouser.fr/Search/Refine.aspx?Keyword=netduino " target="_blank ">Mouser Electronics</a>
+				</li>
+			</ul>
+			<hr>
+
+			<h4 id="FEZ ">
+				<a name="carte-netduino-de-secret-labs " class="anchor " href="#carte-netduino-de-secret-labs " target="_blank ">
+					<span class="octicon octicon-link "></span>
+				</a>1.3 Les cartes FEZ</h4>
+			<h5>GHI Electonics (Extrait)</h5>
+			<hr>
+			<ul>
+				<li>
+					<strong>Microcontrôleur</strong>
+					<ul>
+						<li>84 MHz 32-bit ARM Cortex-M4 (
+							<strong>BrainPad</strong> ),</li>
+						<li>180 MHz 32-bit ARM Cortex-M4 (
+							<strong>PANDA III</strong>)*,</li>
+						<li> 120 MHz 32-bit ARM Cortex-M3 (
+							<strong>COBRA III</strong>)**</li>
+					</ul>
+					<li>
+						<strong>SoC(SoM)*</strong> :
+						<a href="https://www.ghielectronics.com/products/scm/g30 " target="_blank">G30</a>
+						<a href="https://www.ghielectronics.com/products/scm/g80 " target="_blank">G80</a>
+						<a href="https://www.ghielectronics.com/products/scm/g120e " target="_blank">G120*</a>
+					</li>
+
+					<li>
+						<strong>RAM</strong> : 68KB, 156KB*, 2.87MB**.</li>
+					<li>
+						<strong>Flash</strong> : 128KB, 256KB*, 13.67MB**.</li>
+					<li>
+						<strong>E/S numériques</strong> : 49, 53*, 60**</li>
+					<li>
+						<strong>Entrées analogiques</strong> : 16, 16*, 8**</li>
+					<li>
+						<strong>Réseaux : </strong> Ethernet TCP/IP, WiFi, and SSL.</li>
+					<li>
+						<strong>Stockage</strong>: carte µSD</li>
+					<li>
+						<strong>IDE</strong> : Microsoft Visual Studio Community 2015</li>
+					<li>
+						<strong>Framework</strong> : .NETMF 4.3</li>
+					<li>
+						<strong>Langages de programmation</strong> : C#, VB</li>
+			</ul>
+			<table>
+				<tr>
+					<td>
+						<img src="images/brainpad.jpg " alt="BrainPad">
+					</td>
+					<td>
+						<img src="images/panda3.png " alt="PANDA III" />
+					</td>
+					<td>
+						<img src="images/cobra3.png " alt="COBRA III" />
+					</td>
+				</tr>
+				<tr>
+					<td align="center">
+						<strong>BrainPad</strong>
+					</td>
+					<td align="center">
+						<strong>PANDA III*</strong>
+					</td>
+					<td align="center">
+						<strong>COBRA III** (compatible Gadgeteer)</strong>
+					</td>
+				</tr>
+			</table>
+			<ul>
+				<li>
+					<strong>Sites à consulter</strong> :
+					<a href="https://www.ghielectronics.com/ " target="_blank ">GHI ELECTRONICS</a>
+				</li>
+				<li>
+					<strong>Distributeurs</strong> :
+					<a href="http://www.mouser.fr " target="_blank ">Mouser Electronics</a>
+				</li>
+				<li>
+					<strong>Schémas</strong> :
+					<a href="http://p.mariano.free.fr/doc/wikis/pdf/Hardware/BrainPadV1/BrainPad_SCH.zip ">BrainPad v1</a>,
+					<a href="http://p.mariano.free.fr/doc/wikis/pdf/Hardware/Panda3/FEZ_Panda_III_SCH.zip ">Panda III</a>,
+					<a href="http://p.mariano.free.fr/doc/wikis/pdf/Hardware/Cobra3/FEZ_Cobra_III_SCH.zip ">Cobra III</a>
+				</li>
+
+			</ul>
+			<hr>
+			<h3 id="LOG ">2. LE LOGICIEL</h3>
+			<hr>
+
+			<h4 id="REP ">2.1 Contenu du répertoire proposé au téléchargement</h4>
+			<p>Le répertoire proposé au téléchargement (au format zip ou tar.gz) contient la solution
+				<strong>ST7735</strong> composée : </p>
+			<ul>
+				<li>Du projet
+					<strong>ST7735</strong>: le
+					<strong>code source </strong>de la classe
+					<em>ST7735</em> et de la classe
+					<em>Color</em>.</li>
+				<li>Du projet
+					<strong>Netduino</strong> : un exemple d'utilisation de cette classe avec une carte Netduino.</li>
+				<li>Du projet
+					<strong>FezPanda</strong> : un exemple d'utilisation de cette classe avec une carte Fez Panda.</li>
+			</ul>
+			<hr>
+			<h4 id="NUGET ">2.2 Le NuGet MicroToolsKit</h4>
+			<p>La dernière version
+				<strong>compilée</strong> des classes
+				<strong>ST7735</strong> et
+				<strong>Color</strong> se situe dans la bibliothèque
+				<strong>MicroToolsKit</strong> disponible sur
+				<a href="https://www.nuget.org/packages/WebGE.MicroToolsKit/ " target="_blank ">nuget.org</a>.</p>
+			<p align="center ">
+				<img src="images/NuGet-large.png " />
+			</p>
+			<p>
+				<strong>Organisation des classes</strong> contenues dans MicroToolsKit
+				<a href="http://webge.dyndns-server.com/dokuwiki/doku.php?id=netmf43:6_microtoolskit " target="_blank ">[lien]</a>
+			</p>
+			<p>
+				<em>
+					<strong>Important</strong> : Installer cette bibliothèque dans le projet simplifie l'utilisation de ces classes.</em>
+			</p>
+			<hr>
+			<h4 id="WIKI ">2.3 Le wiki .NetMF v4.3</h4>
+			<ul>
+				Un wiki est dédié au
+				<strong>microframework .Net v4.3</strong>. Il propose au téléchargement :
+				<li>Des
+					<strong>exemples</strong> de code pour les cartes
+					<strong>Netduino</strong>,
+					<strong>GHI FEZ (Panda 3 , BrainPad, etc.) </strong>.
+					<a href=" http://webge.dyndns-server.com/dokuwiki/doku.php?id=netmf43:accueilnetmf " target="_blank ">[lien]</a>
+				</li>
+
+			</ul>
+			<hr>
+
+			<h4 id="DESC ">2.4 Description et utilisation des classes ST7735 et Color</h3>
+				<hr>
+				<ul>
+					<li>
+						<strong>Rôle: </strong>Contrôler un afficheur TFT couleur avec un circuit ST7735.</li>
+					<li>
+						<strong>Assembly: </strong>
+						<em>MicroToolsKit</em> (disponible sur
+						<a href="https://www.nuget.org/packages/WebGE.MicroToolsKit/ " target="_blank ">nuget.org</a>)</li>
+					<li>
+						<strong>Espace de noms: </strong>
+						<em>Microtoolskit.Hardware.Displays.TFTColor</em>
+					</li>
+				</ul>
+				<hr/>
+
+				<p>
+					<strong>Création d'un projet avec l'IDE Visual Studio</strong>
+				</p>
+				<ol>
+					<li>
+						<strong>Créer </strong>un nouveau projet en suivant la démarche décrite dans le chapitre
+						<em>"Premier programme en C# étape par étape "</em> avec à une carte
+						<strong>Netduino</strong> ou avec une carte
+						<strong>Fez (Panda 3, BrainPad, etc.)</strong>.
+						<a href=" http://webge.dyndns-server.com/dokuwiki/doku.php?id=netmf43:accueilnetmf " target="_blank ">[lien]</a>
+					</li>
+
+					<li>
+						<strong>Utiliser</strong> le gestionnaire de paquets NuGet pour
+						<strong>ajouter</strong> la bibliothèque
+						<strong>MicroToolsKit</strong> (
+						<a href="https://www.nuget.org/packages/WebGE.MicroToolsKit/ " target="_blank ">nuget.org</a>) dans le projet. (Dans l'explorateur de solution, clic droit sur les
+						<em>Références</em> du projet puis choisir
+						<em>Gérer les packages NuGet...</em>.
+						<strong> Installer</strong> le paquet.)</li>
+					<li>
+						<strong>Ajouter</strong> l'espace de noms
+						<strong>Microtoolskit.Hardware.Displays.TFTColor</strong> dans l'en-tête du fichier source.
+					</li>
+					<li>
+						<strong>Créer</strong> un objet en utilisant le constructeur
+						<em>ST7735</em>.</li>
+					<li>
+						<strong>Dessinez</strong> du texte et des formes géométriques avec les méthodes décrites ci-dessous.
+					</li>
+				</ol>
+				<hr>
+				<strong>Exemple pour la carte Panda</strong>
+				<br>
+				<pre>
+using System.Threading;
+
+using Microtoolskit.Hardware.Displays.TFTColor;
+using GHI.Pins;
+						
+namespace PANDA_3_ST7735
+{
+	public class Program
+	{
+		public static void Main()
+		{
+			ST7735 DisplayShield = new ST7735(FEZPandaIII.Gpio.D8, FEZPandaIII.Gpio.D10, FEZPandaIII.SpiBus.Spi1);
+			int i = 0;
+						
+			// Rectangle
+			DisplayShield.DrawFilledRectangle(0, 0, 160, 128, Color.Black);
+						
+			DisplayShield.DrawLargeText(20, 30, ".NEMF v4.3", Color.Yellow);
+						
+			while (true)
+			{
+				DisplayShield.DrawText(30, 60, "Count: " + i++, Color.Magenta);
+				Thread.Sleep(10);
+			}
+		}
+	}
+}
+				</pre>
+
+				<hr>
+				<h4>La lasse ST7735</h4>
+				<hr>
+
+				<p>
+					<strong>Constructeurs</strong>
+				</p>
+
+				<table>
+					<tr>
+						<td></td>
+						<td>
+							<strong>Syntaxe</strong>
+						</td>
+						<td>
+							<strong>Description</strong>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="images/Method_16x.png ">
+						</td>
+						<td>
+							<strong>ST7735</strong>(
+							<strong>Cpu.Pin</strong>
+							<em>CtrlPin</em>,
+							<strong>Cpu.Pin</strong>
+							<em>ChipSelect</em>,
+							<strong>Cpu.Pin</strong>
+							<em>SpiBus</em>)</td>
+						</td>
+						<td>Instancie un objet "ST7735".
+							<br>
+							<ul>
+								<li>
+									<strong>CtrlPin</strong>: A relier à la broche
+									<strong>D/C</strong> de sélection des données / commandes de l'afficheur.
+									<ul>
+										<li>
+											Panda3 : FEZPandaIII.Gpio.D8
+										</li>
+										<li>
+											Netduino : Pins.GPIO_PIN_D8
+										</li>
+									</ul>
+								</li>
+								<li>
+									<strong>ChipSelect</strong>: broche du bus SPI pour la sélection de la puce ST7735 de l'afficheur.
+									<ul>
+										<li>
+											Panda3 : FEZPandaIII.Gpio.D10
+										</li>
+										<li>
+											Netduino : Pins.GPIO_PIN_D10
+										</li>
+									</ul>
+								</li>
+								<li>
+									<strong>SpiBus</strong>: objet contrôlant les signaux SCK, MISO et MOSI du BUS SPI. Voir le
+									<a href="http://webge.dyndns-server.com/dokuwiki/doku.php?id=arduino:arduinoecrangr1_8" target="_blank">lien</a>
+									pour la connexion du breakout à une carte compatible Arduino.
+									<ul>
+										<li>
+											Panda3 : FEZPandaIII.SpiBus.Spi1
+										</li>
+										<li>
+											Netduino : SPI_Devices.SPI1
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<strong>Exemple : </strong>
+							<br> ST7735 DisplayShield = new ST7735(FEZPandaIII.Gpio.D8, FEZPandaIII.Gpio.D10, FEZPandaIII.SpiBus.Spi1);
+						</td>
+					</tr>
+				</table>
+
+				<p>
+					<strong>Constantes</strong>
+				</p>
+				<table width="100% ">
+					<tr>
+						<td></td>
+						<td>
+							<strong>Syntaxe</strong>
+						</td>
+						<td>
+							<strong>Description</strong>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="images/constant_16x.png ">
+						</td>
+						<td>
+							<strong>Heignt</strong>
+						</td>
+						<td>
+							Hauteur de l'écran en pixels. (160px)
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="images/constant_16x.png ">
+						</td>
+						<td>
+							<strong>Width</strong>
+						</td>
+						<td>
+							Largeur de l'écran en pixels. (128px)
+						</td>
+					</tr>
+				</table>
+
+				<p>
+					<strong>Méthodes</strong>
+				</p>
+
+				<table>
+					<tr>
+						<td></td>
+						<td>
+							<strong>Syntaxe</strong>
+						</td>
+						<td>
+							<strong>Description</strong>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="images/Method_16x.png ">
+						</td>
+						<td>
+							<strong>void TurnOff</strong>()</td>
+						<td>
+							Désactive le rétroéclairage de l'écran.
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<img src="images/Method_16x.png ">
+						</td>
+						<td>
+							<strong>void TurnOn</strong>()</td>
+						<td>
+							Active le rétroéclairage de l'écran.
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<img src="images/Method_16x.png ">
+						</td>
+						<td>
+							<strong>void Clear</strong>()</td>
+						<td>
+							<p>Efface l'écran.</p>
+
+							<strong>Example</strong>
+							<br> DisplayShield.Clear();
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<img src="images/Method_16x.png ">
+						</td>
+						<td>
+							<strong>void SetPixel</strong>(
+							<strong>int</strong>
+							<em>x</em>,
+							<strong>int</strong>
+							<em>y</em>,
+							<strong>Color</strong>
+							<em>color</em>)</td>
+						<td>
+							<p>Dessine un point à la position (
+								<em>x</em>,
+								<em>y</em>) dans la couleur
+								<em>color</em>).</p>
+							<strong>Example</strong>
+							<br> DisplayShield.SetPixel(30, 30, Color.Green);
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<img src="images/Method_16x.png">
+						</td>
+						<td>
+							<strong>void DrawLine</strong>(
+							<strong>int</strong>
+							<em>x0</em>,
+							<strong>int</strong>
+							<em>y0</em>,
+							<strong>int</strong>
+							<em>x1</em>,
+							<strong>int</strong>
+							<em>y1</em>,
+							<strong>Color</strong>
+							<em>color</em>)</td>
+						<td>
+							<p>Dessine une ligne entre les points de coordonnées (
+								<em>x0</em>,
+								<em>y0</em>) et (
+								<em>x1</em>,
+								<em>y1</em>) dans la couleur
+								<em>color</em>.</p>
+							<strong>Example</strong>
+							<br> DisplayShield.DrawLine(10, 10, 50, 50, Color.Yellow);
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="images/Method_16x.png ">
+						</td>
+						<td>
+							<strong>void DrawRectangle</strong>(
+							<strong>int</strong>
+							<em>x</em>,
+							<strong>int</strong>
+							<em>y</em>,
+							<strong>int</strong>
+							<em>width</em>,
+							<strong>int</strong>
+							<em>height</em>,
+							<strong>Color</strong>
+							<em>color</em>)</td>
+						<td>
+							<p>Dessine le contour d'un rectangle (
+								<em>width</em> par
+								<em>height</em>) à la position (
+								<em>x</em>,
+								<em>y</em>) dans la couleur
+								<em>color</em>.</p>
+							<strong>Example</strong>
+							<br> DisplayShield.DrawRectangle(20, 20, 50, 50, Color.Cyan);
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="images/Method_16x.png ">
+						</td>
+						<td>
+							<strong>void DrawFilledRectangle</strong>(
+							<strong>int</strong>
+							<em>x</em>,
+							<strong>int</strong>
+							<em>y</em>,
+							<strong>int</strong>
+							<em>width</em>,
+							<strong>int</strong>
+							<em>height</em>,
+							<strong>Color</strong>
+							<em>color</em>)</td>
+						<td>
+							<p>Dessine un rectangle plein (
+								<em>width</em> par
+								<em>height</em>) à la position (
+								<em>x</em>,
+								<em>y</em>) dans la couleur
+								<em>color</em>.</p>
+							<strong>Example</strong>
+							<br> DisplayShield.DrawFilledRectangle(15, 15, 60, 60, Color.Yellow);
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="images/Method_16x.png ">
+						</td>
+						<td>
+							<strong>void DrawCircle</strong>(
+							<strong>int</strong>
+							<em>x</em>,
+							<strong>int</strong>
+							<em>y</em>,
+							<strong>int</strong>
+							<em>r</em>,
+							<strong>Color</strong>
+							<em>color</em>)</td>
+						<td>
+							<p>Dessine un cercle de rayon
+								<em>r</em> à la position (
+								<em>x</em>,
+								<em>y</em>) dans la couleur
+								<em>color</em>.</p>
+
+							<strong>Example</strong>
+							<br> Color maCouleur = new Color(100, 100, 100);
+							<br> DisplayShield.DrawCircle(20, 20, 10, maCouleur);
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="images/Method_16x.png ">
+						</td>
+						<td>
+							<strong>void DrawImage</strong>(
+							<strong>byte[]</strong>
+							<em>data</em>
+							)</td>
+						<td>
+							<p>Dessine une image décrite par un tableau d'octets
+								<em>data</em>.</p>
+							<strong>Example</strong>
+							<br> A venir
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="images/Method_16x.png ">
+						</td>
+						<td>
+							<strong>void DrawNumber</strong>(
+							<strong>int</strong>
+							<em>x</em>,
+							<strong>int</strong>
+							<em>y</em>,
+							<strong>double</strong>
+							<em>number</em>,
+							<strong>Color</strong>
+							<em>color</em>)</td>
+						<td>
+							Ecrit un nombre
+							<em>number</em>, en petits caractères, à la position (
+							<em>x</em>,
+							<em>y</em>) dans la couleur
+							<em>color</em>.
+							<br>
+							<p>
+								<strong>Surchargée</strong> : long number</p>
+
+							<strong>Example</strong>
+							<br> double resultat = 12;
+							<br> DisplayShield.DrawNumber(50, 50, resultat,Color.White);
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="images/Method_16x.png ">
+						</td>
+						<td>
+							<strong>void DrawLargeNumber</strong>(
+							<strong>int</strong>
+							<em>x</em>,
+							<strong>int</strong>
+							<em>y</em>,
+							<strong>double</strong>
+							<em>number</em>,
+							<strong>Color</strong>
+							<em>color</em>)</td>
+						<td>
+							Ecrit un nombre
+							<em>number</em>, de grande taille, à la position (
+							<em>x</em>,
+							<em>y</em>) dans la couleur
+							<em>color</em>.
+							<br> Surchargée : long number
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="images/Method_16x.png ">
+						</td>
+						<td>
+							<strong>void DrawExtraLargeNumber</strong>(
+							<strong>int</strong>
+							<em>x</em>,
+							<strong>int</strong>
+							<em>y</em>,
+							<strong>double</strong>
+							<em>number</em>,
+							<strong>Color</strong>
+							<em>color</em>)</td>
+						<td>
+							Ecrit un nombre
+							<em>number</em>, de très grande taille, à la position (
+							<em>x</em>,
+							<em>y</em>) dans la couleur
+							<em>color</em>.
+							<br>
+							<strong>Surchargée</strong> : long number
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="images/Method_16x.png ">
+						</td>
+						<td>
+							<strong>void DrawLetter</strong>(
+							<strong>int</strong>
+							<em>x</em>,
+							<strong>int</strong>
+							<em>y</em>,
+							<strong>char</strong>
+							<em>letter</em>,
+							<strong>Color</strong>
+							<em>color</em>)</td>
+						<td>
+							<p>Ecrit une lettre
+								<em>letter</em> de petite taille, à la position (
+								<em>x</em>,
+								<em>y</em>), dans la couleur
+								<em>color</em>.</p>
+							<strong>Example</strong>
+							<br> DisplayShield.DrawLetter(50, 50,'E', Color.White);
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="images/Method_16x.png ">
+						</td>
+						<td>
+							<strong>void DrawLargeLetter</strong>(
+							<strong>int</strong>
+							<em>x</em>,
+							<strong>int</strong>
+							<em>y</em>,
+							<strong>char</strong>
+							<em>letter</em>,
+							<strong>Color</strong>
+							<em>color</em>)</td>
+						<td>
+							Ecrit une lettre
+							<em>letter</em> de grande taille à la position (
+							<em>x</em>,
+							<em>y</em>) dans la couleur
+							<em>color</em>.
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="images/Method_16x.png ">
+						</td>
+						<td>
+							<strong>void DrawExtraLargeLetter</strong>(
+							<strong>int</strong>
+							<em>x</em>,
+							<strong>int</strong>
+							<em>y</em>,
+							<strong>char</strong>
+							<em>letter</em>,
+							<strong>Color</strong>
+							<em>color</em>)</td>
+						<td>
+							Ecrit une lettre
+							<em>letter</em> de très grande taille à la position (
+							<em>x</em>,
+							<em>y</em>) dans la couleur
+							<em>color</em>.
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="images/Method_16x.png ">
+						</td>
+						<td>
+							<strong>void DrawText</strong>(
+							<strong>int</strong>
+							<em>x</em>,
+							<strong>int</strong>
+							<em>y</em>,
+							<strong>string</strong>
+							<em>text</em>,
+							<strong>Color</strong>
+							<em>color</em>)</td>
+						<td>
+							<p> Ecrit un texte
+								<em>text</em>, en petits caractères, à la position (
+								<em>x</em>,
+								<em>y</em>) dans la couleur
+								<em>color</em>.</p>
+							<strong>Example</strong>
+							<br> DisplayShield.DrawText(50, 50, "Un petit texte", Color.Magenta);
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="images/Method_16x.png ">
+						</td>
+						<td>
+							<strong>void DrawLargeText</strong>(
+							<strong>int</strong>
+							<em>x</em>,
+							<strong>int</strong>
+							<em>y</em>,
+							<strong>string</strong>
+							<em>text</em>,
+							<strong>Color</strong>
+							<em>color</em>)</td>
+						<td>
+							Ecrit un texte
+							<em>text</em>, de grande taille, à la position (
+							<em>x</em>,
+							<em>y</em>) dans la couleur
+							<em>color</em>.
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="images/Method_16x.png ">
+						</td>
+						<td>
+							<strong>void DrawExtraLargeText</strong>(
+							<strong>int</strong>
+							<em>x</em>,
+							<strong>int</strong>
+							<em>y</em>,
+							<strong>string</strong>
+							<em>text</em>,
+							<strong>Color</strong>
+							<em>color</em>)
+						</td>
+						<td>
+							Ecrit un texte
+							<em>text</em>, de très grande taille, à la position (
+							<em>x</em>,
+							<em>y</em>) dans la couleur
+							<em>color</em>.
+						</td>
+					</tr>
+				</table>
+
+				<h4>La classe Color</h4>
+				<p>
+					<strong>Constructeurs</strong>
+				</p>
+				<table>
+					<tr>
+						<td></td>
+						<td>
+							<strong>Syntaxe</strong>
+						</td>
+						<td>
+							<strong>Description</strong>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="images/Method_16x.png ">
+						</td>
+						<td>
+							<strong>Color</strong>()</td>
+						<td>
+							<p>Construit une nouvelle instance de la classe couleur (couleur personnalisée).</p>
+							<strong>Example</strong>
+							<br> Color uneCouleur = new Color();
+							<br> uneCouleur.B = 150;<br>
+							Remarque : S'ils ne sont pas définis R et V sont égaux à 0;
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="images/Method_16x.png ">
+						</td>
+						<td>
+							<strong>Color</strong> (
+							<strong>byte</strong>
+							<em>red</em>
+							<strong>byte</strong>
+							<em>green</em>
+							<strong>byte</strong>
+							<em>blue</em>
+							)</td>
+						<td>
+							<p>Construit une nouvelle instance de la classe couleur en précisant le niveau de rouge, de vert et de bleu (couleur personnalisée).</p>
+							<strong>Example</strong>
+							<br>
+							Color maCouleur = new Color(100, 100, 100);
+						</td>
+					</tr>
+				</table>
+				<p>
+					<strong>Champs</strong>
+				</p>
+				<table width="100% ">
+					<tr>
+						<td></td>
+						<td>
+							<strong>Syntaxe</strong>
+						</td>
+						<td>
+							<strong>Description</strong>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="images/Field_16x.png">
+						</td>
+						<td>
+							<strong>Black</strong>
+						</td>
+						<td>
+							Couleur prédéfinie. (Color)
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="images/Field_16x.png">
+						</td>
+						<td>
+							<strong>Blue</strong>
+						</td>
+						<td>
+							Couleur prédéfinie. (Color)
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="images/Field_16x.png">
+						</td>
+						<td>
+							<strong>Cyan</strong>
+						</td>
+						<td>
+							Couleur prédéfinie. (Color)
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="images/Field_16x.png">
+						</td>
+						<td>
+							<strong>Green</strong>
+						</td>
+						<td>
+							Couleur prédéfinie. (Color)
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="images/Field_16x.png">
+						</td>
+						<td>
+							<strong>Magenta</strong>
+						</td>
+						<td>
+							Couleur prédéfinie. (Color)
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="images/Field_16x.png">
+						</td>
+						<td>
+							<strong>Red</strong>
+						</td>
+						<td>
+							Couleur prédéfinie. (Color)
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="images/Field_16x.png">
+						</td>
+						<td>
+							<strong>Yellow</strong>
+						</td>
+						<td>
+							Couleur prédéfinie. (Color)
+						</td>
+					</tr>
+				</table>
+				<p>
+					<strong>Propriétés</strong>
+				</p>
+				<table width="100% ">
+					<tr>
+						<td></td>
+						<td>
+							<strong>Syntaxe</strong>
+						</td>
+						<td>
+							<strong>Description</strong>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="images/Property_20x.png">
+						</td>
+						<td>
+							<strong>As565</strong>
+						</td>
+						<td>
+								<p></p>Obtient la couleur au format As565. Dans ce format, la couleur est codée sur 16 bits.
+								Le rouge R correspond aux 5 bits de poids faible de l'octet Rouge;
+								Le vert V correspond aux 6 bits de poids faible de l'octet Vert;
+								Le bleu B correspond aux 5 bits de poids faible de l'octet Bleu;</p>
+								<strong>Example</strong> <br>
+								Color maCouleur = new Color(20,60,30); <br>
+								int maCouleurAs565 = maCouleur.As565 // Donne maCouleurAs565 = 2048*20 + 32*60 + 1*30 = 42910
+								<br> 
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="images/Property_20x.png">
+						</td>
+						<td>
+							<strong>B</strong>
+						</td>
+						<td>
+							<p>Définit ou obtient le niveau de bleu sur un octet.</p>	
+							<strong>Examples</strong>
+							<br> Color uneCouleur = new Color();
+							<br> <strong>Ex1: </strong> uneCouleur.B = 150;<br>
+							<p>Remarque : S'ils ne sont pas définis R et V sont égaux à 0;</p>
+							<strong>Ex2: </strong>byte bleu = uneCouleur.B; // Donne bleu = 150
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="images/Property_20x.png">
+						</td>
+						<td>
+							<strong>G</strong>
+						</td>
+						<td>
+								Définit ou obtient  niveau de vert sur un octet.
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="images/Property_20x.png">
+						</td>
+						<td>
+							<strong>R</strong>
+						</td>
+						<td>
+								Définit ou obtient niveau de rouge sur un octet.
+						</td>
+					</tr>
+				</table>
+
+		</section>
+	</div>
+
+	<!-- FOOTER  -->
+	<div id="footer_wrap " class="outer ">
+		<footer class="inner ">
+			<p class="copyright ">Description de la classe
+				<strong>
+					<em>EasyStepperDriver</em>
+				</strong> développée en C# sous .NETMF 4.3 pour les cartes Netduino et FEZ (PANDA, COBRA...) maintained by
+				<a href="https://github.com/WebGE ">WebGE</a>
+			</p>
+			<p>Published with
+				<a href="http://pages.github.com ">GitHub Pages</a>
+			</p>
+		</footer>
+	</div>
+</body>
+
+</html>
