@@ -54,7 +54,7 @@ Fez Panda III, Netduino2 plus
 **Todo list**
 ----
 - fill circle
-- draw triangle
+- draw and fill triangle
 - rotation screen
 - draw bitmap
 
