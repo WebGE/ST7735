@@ -40,17 +40,21 @@
     <Reference Include="Microsoft.SPOT.Hardware.PWM" />
     <Reference Include="Microsoft.SPOT.Hardware.SerialPort" />
     <Reference Include="Microsoft.SPOT.Native" />
+    <Reference Include="MicroToolsKit, Version=1.4.5.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGE.MicroToolsKit.1.4.5.2\lib\netmf43\MicroToolsKit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="SecretLabs.NETMF.Hardware" />
     <Reference Include="SecretLabs.NETMF.Hardware.Netduino" />
     <Reference Include="System" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ST7735\ST7735.csproj">
       <Project>{721645B0-5A1B-45A8-8549-06895B8564E1}</Project>
       <Name>ST7735</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
