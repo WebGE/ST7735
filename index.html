@@ -28,7 +28,9 @@
 
 			<section id="downloads">
 				<a class="zip_download_link" href="https://github.com/WebGE/ST7735/zipball/master">Download this project as a .zip file</a>
-				<a class="tar_download_link" href="https://github.com/WebGE/ST7735/tarball/master">Download this project as a tar.gz file</a>
+				<a class="tar_download_link" href="https://github.com/WebGE/ST7735/tarball/master">Download this project as a tar.gz
+					file
+				</a>
 			</section>
 		</header>
 	</div>
@@ -70,10 +72,13 @@
 				<li>LIENS
 					<ol>
 						<li>
-							<a href="http://webge.dyndns-server.com/dokuwiki/doku.php?id=netmf43:accueilnetmf" target="_blank">Les exemples codés en C# pour les cartes Netduino et Fez (Panda 3, BrainPad)</a>
+							<a href="http://webge.dyndns-server.com/dokuwiki/doku.php?id=netmf43:accueilnetmf" target="_blank">Les exemples codés
+								en C# pour les cartes Netduino et Fez (Panda 3, BrainPad)</a>
 						</li>
 						<li>
-							<a href="http://webge.dyndns-server.com/dokuwiki/doku.php?id=netmf43:6_microtoolskit" target="_blank">La page du projet MicroToolsKit</a>
+							<a href="http://webge.dyndns-server.com/dokuwiki/doku.php?id=netmf43:6_microtoolskit" target="_blank">La page du projet
+								MicroToolsKit
+							</a>
 						</li>
 					</ol>
 				</li>
@@ -124,7 +129,7 @@
 							<a href="https://learn.adafruit.com/1-8-tft-display" target="_blank">[lien]</a>
 						</li>
 						<li>
-							Wiki WebGE  (Code C++) : </strong>
+							Wiki WebGE (Code C++) : </strong>
 							<a href="http://webge.dyndns-server.com/dokuwiki/doku.php?id=arduino:arduinoecrangr1_8" target="_blank">[lien]</a>
 						</li>
 						<li>
@@ -132,9 +137,9 @@
 							<a href="https://www.mouser.fr/Search/Refine.aspx?Keyword=485-358" target="_blank">Mouser</a>
 						</li>
 						<li>
-								Datasheet du circuit ST7735 :
-								<a href="datasheets/ST7735.zip" target="_blank">[Télécharger]</a>
-							</li>
+							Datasheet du circuit ST7735 :
+							<a href="datasheets/ST7735.zip" target="_blank">[Télécharger]</a>
+						</li>
 					</ul>
 				</li>
 			</ul>
@@ -330,7 +335,8 @@
 			</ul>
 			<hr>
 
-			<h4 id="DESC">2.4 Description et utilisation des classes ST7735 et Color</h3>
+			<h4 id="DESC">2.4 Description et utilisation des classes ST7735 et Color
+				</h3>
 				<hr>
 				<ul>
 					<li>
@@ -362,7 +368,8 @@
 						<strong>Utiliser</strong> le gestionnaire de paquets NuGet pour
 						<strong>ajouter</strong> la bibliothèque
 						<strong>MicroToolsKit</strong> (
-						<a href="https://www.nuget.org/packages/WebGE.MicroToolsKit/ " target="_blank ">nuget.org</a>) dans le projet. (Dans l'explorateur de solution, clic droit sur les
+						<a href="https://www.nuget.org/packages/WebGE.MicroToolsKit/ " target="_blank ">nuget.org</a>) dans le projet. (Dans
+						l'explorateur de solution, clic droit sur les
 						<em>Références</em> du projet puis choisir
 						<em>Gérer les packages NuGet...</em>.
 						<strong> Installer</strong> le paquet.)</li>
@@ -708,15 +715,42 @@ namespace PANDA_3_ST7735
 							<img src="images/Method_16x.png ">
 						</td>
 						<td>
-							<strong>void DrawImage</strong>(
+							<strong>void DrawPicture</strong>(
+							<strong>int</strong>
+							<em>x</em>,
+							<strong>int</strong>
+							<em>y</em>,
+							<strong>int</strong>
+							<em>width</em>,
+							<strong>int</strong>
+							<em>height</em>,
+							<strong>Color</strong>
+							<em>color</em>,
 							<strong>byte[]</strong>
 							<em>data</em>
 							)</td>
 						<td>
-							<p>Dessine une image décrite par un tableau d'octets
-								<em>data</em>.</p>
+							<p>Dessine une image monochrome décrite par un tableau d'octets
+								<em>data</em> (valeur "1" ou "0") de largeur <em>width</em> et de hauteur <em>height</em> à la position <em>(x,y)</em>
+								dans la couleur <em>color</em>. </p>
 							<strong>Example</strong>
-							<br> A venir
+							<br> byte[] pictureData = new byte[] { <br> 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+							<br> 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,
+							<br> 0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,
+							<br> 0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,
+							<br> 0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,
+							<br> 0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,
+							<br> 0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,
+							<br> 0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,
+							<br> 0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,
+							<br> 0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,
+							<br> 0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,
+							<br> 0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,
+							<br> 0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,
+							<br> 0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,
+							<br> 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,
+							<br> 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+							<br> }; DisplayShield.DrawPicture(80,40,16,16,Color.Green,pictureData);
 						</td>
 					</tr>
 					<tr>
@@ -958,8 +992,7 @@ namespace PANDA_3_ST7735
 							<p>Construit une nouvelle instance de la classe couleur (couleur personnalisée).</p>
 							<strong>Example</strong>
 							<br> Color uneCouleur = new Color();
-							<br> uneCouleur.B = 150;<br>
-							Remarque : S'ils ne sont pas définis R et V sont égaux à 0;
+							<br> uneCouleur.B = 150;<br> Remarque : S'ils ne sont pas définis R et V sont égaux à 0;
 						</td>
 					</tr>
 					<tr>
@@ -976,10 +1009,11 @@ namespace PANDA_3_ST7735
 							<em>blue</em>
 							)</td>
 						<td>
-							<p>Construit une nouvelle instance de la classe couleur en précisant le niveau de rouge, de vert et de bleu (couleur personnalisée).</p>
+							<p>Construit une nouvelle instance de la classe couleur en précisant le niveau de rouge, de vert et de bleu (couleur
+								personnalisée).
+							</p>
 							<strong>Example</strong>
-							<br>
-							Color maCouleur = new Color(100, 100, 100);
+							<br> Color maCouleur = new Color(100, 100, 100);
 						</td>
 					</tr>
 				</table>
@@ -1095,15 +1129,14 @@ namespace PANDA_3_ST7735
 							<strong>As565</strong>
 						</td>
 						<td>
-								<p></p>Obtient la couleur au format <a href="http://webge.dyndns-server.com/dokuwiki/doku.php?id=arduino:4a_graphique">As565</a> . Dans ce format, la couleur est codée sur 16 bits.
-								Le rouge R correspond aux 5 bits de poids faible de l'octet Rouge;
-								Le vert V correspond aux 6 bits de poids faible de l'octet Vert;
-								Le bleu B correspond aux 5 bits de poids faible de l'octet Bleu;</p>
-								<strong>Example</strong> <br>
-								Color maCouleur = new Color(20,60,30); <br>
-								int maCouleurAs565 = maCouleur.As565 // Donne maCouleurAs565 = 2048*20 + 32*60 + 1*30 = 42910
-								<br>
-								// Soit 2048*R + 32*V+1*B avec Rmax= 31, Vmax=63 et Bmax=31
+							<p></p>Obtient la couleur au format <a href="http://webge.dyndns-server.com/dokuwiki/doku.php?id=arduino:4a_graphique">As565</a>
+							. Dans ce format, la couleur est codée sur 16 bits. Le rouge R correspond aux 5 bits de poids faible de l'octet Rouge; Le
+							vert V correspond aux 6 bits de poids faible de l'octet Vert; Le bleu B correspond aux 5 bits de poids faible de l'octet
+							Bleu;
+							</p>
+							<strong>Example</strong> <br> Color maCouleur = new Color(20,60,30); <br> int maCouleurAs565 = maCouleur.As565 //
+							Donne maCouleurAs565 = 2048*20 + 32*60 + 1*30 = 42910
+							<br> // Soit 2048*R + 32*V+1*B avec Rmax= 31, Vmax=63 et Bmax=31
 						</td>
 					</tr>
 					<tr>
@@ -1114,7 +1147,7 @@ namespace PANDA_3_ST7735
 							<strong>B</strong>
 						</td>
 						<td>
-							<p>Définit ou obtient le niveau de bleu sur un octet.</p>	
+							<p>Définit ou obtient le niveau de bleu sur un octet.</p>
 							<strong>Examples</strong>
 							<br> Color uneCouleur = new Color();
 							<br> <strong>Ex1: </strong> uneCouleur.B = 150;<br>
@@ -1130,7 +1163,7 @@ namespace PANDA_3_ST7735
 							<strong>G</strong>
 						</td>
 						<td>
-								Définit ou obtient  niveau de vert sur un octet.
+							Définit ou obtient niveau de vert sur un octet.
 						</td>
 					</tr>
 					<tr>
@@ -1141,7 +1174,7 @@ namespace PANDA_3_ST7735
 							<strong>R</strong>
 						</td>
 						<td>
-								Définit ou obtient niveau de rouge sur un octet.
+							Définit ou obtient niveau de rouge sur un octet.
 						</td>
 					</tr>
 				</table>
