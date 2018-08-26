@@ -41,7 +41,7 @@ This class is also in the [MicroToolsKit](https://www.nuget.org/packages/WEBGE.M
 
 ## Videos
 
-to come up
+See on [Youtube](https://youtu.be/cceAUKGTWGY)
 
 ## Keywords
 
@@ -60,7 +60,7 @@ Fez Panda III, Netduino2 plus
 
 ## To get started
 
-See [ST7735 GitHub Pages](http://webge.github.io/ST7735/) (in French).
+See [ST7735 GitHub Pages](http://webge.github.io/ST7735/) (in French)
 
 ## Feed on Google+
 
